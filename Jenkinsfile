@@ -6,6 +6,11 @@ pipeline {
             echo 'Building'
          }
       }
+      stage('Checking Building') {
+         steps {
+            input 'Does the staging buiding look ok?'
+         }
+      }
       stage('Testing') {
          steps {
             echo 'Testing'
