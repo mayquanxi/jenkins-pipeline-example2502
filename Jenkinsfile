@@ -1,8 +1,18 @@
 pipeline {
    agent {
-      docker { image 'nginx:alpine' }
+      label '!windows'
+   }
+   environment {
+      DISABLE_AUTH = 'true'
+      DB_ENGINE = 'sqlite'
    }
    stages {
-      stage('Pull-image-nginx-test') { steps { sh 'docker run --rm nginx nginx -t' }}
+      stage('Build') {
+         steps {
+            echo "Database engine is ${DB_ENGINE}"
+            echo "Disable auth is ${DISABLE_AUTH}"
+            sh 'printenv'
+         }
+      }
    }
 }
