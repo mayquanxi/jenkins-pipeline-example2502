@@ -5,7 +5,7 @@ pipeline {
          steps {
          	timeout(time: 1, unit: 'MINUTES') {
          		retry(5) {
-         			sh 'date >> new_file2'
+         			sh 'date >> /tmp/new_file2'
          		}
          	}
          }
