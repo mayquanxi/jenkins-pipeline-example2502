@@ -1,18 +1,22 @@
 pipeline {
-   agent {
-      label '!Linux'
-   }
-   environment {
-      DISABLE_AUTH = 'true'
-      DB_ENGINE = 'sqlite'
-   }
-   stages {
-      stage('Build') {
-         steps {
-            echo "Database engine is ${DB_ENGINE}"
-            echo "Disable auth is ${DISABLE_AUTH}"
-            sh 'printenv'
-         }
-      }
-   }
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh './gradlew build'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './gradlew check'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
+        }
+    }
 }
