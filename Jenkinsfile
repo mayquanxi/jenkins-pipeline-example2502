@@ -1,8 +1,8 @@
 pipeline {
    agent {
-      docker { image 'nginx:alpine' }
+      docker { image 'nginx' }
    }
    stages {
-      stage('Pull-image-nginx-test') { steps { sh 'nginx -t' }}
+      stage('Pull-image-nginx-test') { steps { sh 'date' }}
    }
 }
