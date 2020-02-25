@@ -1,9 +1,19 @@
 pipeline {
    agent any
    stages {
-      stage('No-op') {
+      stage('Build') {
          steps {
-            sh 'ls -l'
+            echo 'Building'
+         }
+      }
+      stage('Testing') {
+         steps {
+            echo 'Testing'
+         }
+      }
+      stage('Deploying') {
+         steps {
+            echo 'Deploying'
          }
       }
    }
