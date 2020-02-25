@@ -1,14 +1,10 @@
 pipeline {
-   agent any
+   agent {
+      docker {image 'node:7-alpine'}
+   }
    stages {
-   	  stage('Print date to file in') {
-         steps {
-         	timeout(time: 1, unit: 'MINUTES') {
-         		retry(5) {
-         			sh 'date >> /tmp/new_file2'
-         		}
-         	}
-         }
-   	  }
+      stage('Test_container_node7apline') {
+         sh 'node --version'
+      }
    }
 }
