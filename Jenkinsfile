@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                timeout(time: 3, unit: 'MINUTES') {
+                timeout(time: 1, unit: 'MINUTES') {
                     retry(5) {
-                        sh 'date >> /tmp/new_date'
+                        sh 'ping 8.8.8.8'
                     }
                 }
             }
